@@ -1,0 +1,10 @@
+table {
+  width: 100%;
+}
+
+h1{
+  text-align: center;
+  color: rgb(160, 6, 6);
+  font-family: cursive;
+  font-size: 30px;
+}
