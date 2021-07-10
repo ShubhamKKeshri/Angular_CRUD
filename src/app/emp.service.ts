@@ -20,4 +20,12 @@ export class EmpService {
   deleteEmp(id: number){
     return this.http.delete(`${this.url}/${id}`);
   }
+
+  getCurrentEmp(id: number){
+    return this.http.get(`${this.url}/${id}`);
+  }
+
+  updateEmp(id: number,data: any){
+    return this.http.put(`${this.url}/${id}`, data);
+  }
 }

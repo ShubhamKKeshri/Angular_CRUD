@@ -1,1 +1,91 @@
-<p>update works!</p>
+<h1>Update Record</h1>
+
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Success!</strong> Data Updated Successfully.
+    <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<form [formGroup]="updateForm" class="form-container">
+    <mat-card>
+        <mat-card-header>
+            <!-- <mat-card-title style="color:maroon;">User Login</mat-card-title> -->
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <input type="text" formControlName="name" matInput placeholder="Name">
+                        <mat-error *ngIf="updateForm.controls['name'].errors?.required">
+                            This field is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <input type="email" formControlName="email" matInput placeholder="Email">
+                        <mat-error *ngIf="updateForm.controls['email'].errors?.required">
+                            Please Insert a valid Email
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <textarea formControlName="address" matInput placeholder="Address"></textarea>
+                        <mat-error *ngIf="updateForm.controls['email'].errors?.required">
+                            Please Insert Address
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <input type="text" formControlName="phone" matInput placeholder="Mobile Number">
+                        <mat-error *ngIf="updateForm.controls['email'].errors?.required">
+                            Please Insert Mobile Number
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Designation</mat-label>
+                        <select matNativeControl required formControlName="designation">
+                            <option value="Front End Developer">Front End Developer</option>
+                            <option value="Back End Developer">Back End Developer</option>
+                            <option value="Full Stack Developer">Full Stack Developer</option>
+                            <option value="Mobile Developer">Mobile Developer</option>
+                        </select>
+                        <mat-error *ngIf="updateForm.controls['email'].errors?.required">
+                            Please Select your designation
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-radio-group formControlName="gender" class="margin-left">
+                        <mat-radio-button value="Male">Male</mat-radio-button> &nbsp;
+                        <mat-radio-button value="Female">Female</mat-radio-button> &nbsp;
+                        <mat-radio-button value="Other">Other</mat-radio-button> &nbsp;
+                    </mat-radio-group>
+                </div>
+
+                <!-- <div class="col-md-6 top-padding">
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Select DOB</mat-label>
+                        <input formControlName="dob" matInput [matDatePicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div> -->
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="collection()" [disabled]="updateForm.invalid" mat-raised-button color="primary">Update</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
