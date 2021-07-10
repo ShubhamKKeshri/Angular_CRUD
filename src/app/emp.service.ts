@@ -16,4 +16,8 @@ export class EmpService {
   saveEmp(data: any){
     return this.http.post(this.url, data)
   }
+
+  deleteEmp(id: number){
+    return this.http.delete(`${this.url}/${id}`);
+  }
 }
