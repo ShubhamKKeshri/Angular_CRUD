@@ -8,3 +8,14 @@ h1{
   font-family: cursive;
   font-size: 30px;
 }
+
+th{
+  font-size: medium;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: blue;
+}
+
+td{
+  color: brown;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}

@@ -12,4 +12,8 @@ export class EmpService {
   getList(){
     return this.http.get(this.url);
   }
+
+  saveEmp(data: any){
+    return this.http.post(this.url, data)
+  }
 }

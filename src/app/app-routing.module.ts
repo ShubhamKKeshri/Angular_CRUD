@@ -9,7 +9,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const routes: Routes = [
   {
-    path:"", component:AddComponent
+    path:"", component:ListComponent
   },
   {
     path:"add", component:AddComponent
