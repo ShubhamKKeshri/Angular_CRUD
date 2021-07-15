@@ -1,16 +1,7 @@
-<h1>Registration Form</h1>
-
-<div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Success!</strong> Data Inserted Successfully.
-    <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-
-<form [formGroup]="profileForm" class="form-container">
+<!-- <form [formGroup]="profileForm" class="form-container">
     <mat-card>
         <mat-card-header>
-            <!-- <mat-card-title style="color:maroon;">User Login</mat-card-title> -->
+            <mat-card-title style="color:maroon;">User Login</mat-card-title> 
         </mat-card-header>
         <mat-card-content>
             <div class="row">
@@ -66,6 +57,15 @@
                     </mat-form-field>
                 </div>
 
+                <div class="col-md-6 top-padding">
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Select DOB</mat-label>
+                        <input formControlName="dob" matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
                 <div class="col-md-6">
                     <mat-radio-group formControlName="gender" class="margin-left">
                         <mat-radio-button value="Male">Male</mat-radio-button> &nbsp;
@@ -74,18 +74,99 @@
                     </mat-radio-group>
                 </div>
 
-                <!-- <div class="col-md-6 top-padding">
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions *ngIf="showSumitButton">
+            <button (click)="saveForm()" mat-dialog-close [disabled]="profileForm.invalid" mat-raised-button
+                color="primary">Submit</button>
+        </mat-card-actions>
+
+        <mat-card-actions *ngIf="showUpdateButton">
+            <button (click)="collection()" mat-dialog-close [disabled]="profileForm.invalid" mat-raised-button
+                color="primary">Update</button>
+        </mat-card-actions>
+    </mat-card>
+</form> -->
+
+<form #profileForm="ngForm" name="profileForm" class="form-container">
+    <mat-card style="background-color: rgb(238, 241, 241);">
+        <mat-card-content>
+            <div class="row">
+
+                <input type="hidden" id="id" name="id" [formControl]="id">
+
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <input matInput id="name" placeholder="Name" name="name" [formControl]="name" required>
+                        
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                            <div *ngIf="name.errors?.required">
+                                Name is required.
+                            </div>
+                            <div *ngIf="name.errors?.minlength">
+                                Name must be at least 4 characters long.
+                            </div>
+                        </div>
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <input matInput id="email" placeholder="Email" name="email" [formControl]="email">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <input matInput id="address" placeholder="Address" name="address" [formControl]="address">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <input matInput id="phone" placeholder="Phone" name="phone" [formControl]="phone">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Designation</mat-label>
+                        <select matNativeControl required id="designation" placeholder="Designation" name="designation" [formControl]="designation">
+                            <option value="Front End Developer">Front End Developer</option>
+                            <option value="Back End Developer">Back End Developer</option>
+                            <option value="Full Stack Developer">Full Stack Developer</option>
+                            <option value="Mobile Developer">Mobile Developer</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6 top-padding">
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Select DOB</mat-label>
-                        <input formControlName="dob" matInput [matDatePicker]="picker">
+                        <input [formControl]="dob" matInput [matDatepicker]="picker" id="dob" name="dob">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
-                </div> -->
+                </div>
+
+                <div class="col-md-6">
+                    <mat-radio-group [formControl]="gender" class="margin-left" id="gender" name="gender">
+                        <mat-radio-button value="Male">Male</mat-radio-button> &nbsp;
+                        <mat-radio-button value="Female">Female</mat-radio-button> &nbsp;
+                        <mat-radio-button value="Other">Other</mat-radio-button> &nbsp;
+                    </mat-radio-group>
+                </div>
+
             </div>
         </mat-card-content>
         <mat-card-actions>
-            <button (click)="saveForm()" [disabled]="profileForm.invalid" mat-raised-button color="primary">Submit</button>
+
+            <button (click)="saveForm()" mat-raised-button color="primary" [disabled]="validate()">Submit</button>
+
+            <button mat-button color="primary" (click)="closeDialog()" style="background-color: orange;">Close</button>
         </mat-card-actions>
     </mat-card>
 </form>

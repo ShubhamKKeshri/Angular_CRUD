@@ -20,25 +20,28 @@ export class UpdateComponent implements OnInit {
     address:['',[Validators.required,Validators.minLength(5)]],
     phone:['',[Validators.required,,Validators.pattern('[0-9]*'),Validators.minLength(10),Validators.maxLength(10)]],
     designation:['',Validators.required],
-    gender:['', Validators.required]
+    dob:['',Validators.required],
+    gender:['', Validators.required],
   })
 
   ngOnInit(): void {
     console.log(this.activatedRouter.snapshot.params.id);
     this.emp.getCurrentEmp(this.activatedRouter.snapshot.params.id).subscribe((result)=>{
+      console.log(result);
       this.updateForm = this.fb.group({
-        name:['',[Validators.required]],
-        email:['',[Validators.required, Validators.email]],
+        name:[result,[Validators.required]],
+        email:['shubham@gmail.com',[Validators.required, Validators.email]],
         address:['',[Validators.required,Validators.minLength(5)]],
         phone:['',[Validators.required,,Validators.pattern('[0-9]*'),Validators.minLength(10),Validators.maxLength(10)]],
         designation:['',Validators.required],
+        dob:['',Validators.required],
         gender:['', Validators.required]
       })
     })
   }
 
   collection(){
-    // console.warn(this.updateForm.value);
+    console.warn(this.updateForm.value);
     this.emp.updateEmp(this.activatedRouter.snapshot.params.id, this.updateForm.value).subscribe((result)=>{
       // console.log(result)
       this.alert=true;

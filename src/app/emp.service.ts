@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,18 @@ import { HttpClient } from '@angular/common/http';
 export class EmpService {
 
   url="http://localhost:3000/emp";
+
+  profileForm = new FormGroup({
+    id: new FormControl(''),
+    name: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required, Validators.email]),
+    address: new FormControl('',[Validators.required,Validators.minLength(5)]),
+    phone: new FormControl('',[Validators.required, Validators.minLength(8), Validators.maxLength(15), Validators.pattern('[0-9]*')]),
+    dob: new FormControl('',Validators.required),
+    designation: new FormControl('',Validators.required),
+    gender: new FormControl('',Validators.required),
+  })
+
   constructor(private http:HttpClient) { }
 
   getList(){
