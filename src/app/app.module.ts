@@ -28,6 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { GenderPipePipe } from './gender-pipe.pipe';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
     UpdateComponent,
     ListComponent,
     PageNotFoundComponent,
+    GenderPipePipe,
     
   ],
   imports: [

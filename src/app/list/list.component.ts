@@ -7,6 +7,7 @@ import { AddComponent } from '../add/add.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { IempData } from '../empInterface';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-list',
@@ -17,6 +18,10 @@ import { IempData } from '../empInterface';
 export class ListComponent implements OnInit {
 
   selectedrow: any;
+
+  todayDate = new Date();
+  result: any;
+  ss:any;
 
   collection?: IempData[];
   displayedColumns: string[] = ['id', 'name', 'email', 'address', 'gender', 'designation', 'phone', 'dob', 'action'];
@@ -77,5 +82,11 @@ export class ListComponent implements OnInit {
         });
       }
     })
+    
+  }
+
+  getFormattedDate(dob: Date){
+    this.result=moment(dob).format('dddd, MMMM Do yyy');
+    return this.result
   }
 }
